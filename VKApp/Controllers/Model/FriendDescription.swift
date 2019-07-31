@@ -17,6 +17,7 @@ struct Friend {
             Friend( friendName: "Tom Hiddlstone",  friendAvatar: UIImage(named: "Tom Hiddlstone"), photos: generateFriendPhotos())
         ]
     }
+    
     //Generating random photos
     static func generateFriendPhotos() ->[UIImage] {
         let images = [
@@ -28,15 +29,14 @@ struct Friend {
             UIImage(named: "06")!,
             UIImage(named: "07")!,
             UIImage(named: "08")!,
-            UIImage(named: "09")!,
-            UIImage(named: "10")!
+            UIImage(named: "09")!
         ]
         
-        let count = Int.random(in: 4...6)
-        var totalArr = [UIImage]()
+        let count = Int.random(in: 5...8)
+        var totalFriendImagesArr = [UIImage]()
         for _ in 0...count {
-            totalArr.append(images.randomElement()!)
+            totalFriendImagesArr.append(images.randomElement()!)
         }
-        return totalArr
+        return totalFriendImagesArr
     }
 }

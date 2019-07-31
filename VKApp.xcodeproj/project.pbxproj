@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		4130B26F22E2447300E3AF18 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4130B26E22E2447300E3AF18 /* FriendsViewController.swift */; };
 		414BEA6A22E093E6005E121D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 414BEA6822E093E6005E121D /* Main.storyboard */; };
-		414BEA6E22E09DFC005E121D /* AvatarImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414BEA6D22E09DFC005E121D /* AvatarImageCell.swift */; };
+		414BEA6E22E09DFC005E121D /* FriendPhotoImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414BEA6D22E09DFC005E121D /* FriendPhotoImageCell.swift */; };
 		4150F50B22D0B039002F9881 /* GroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4150F50A22D0B039002F9881 /* GroupsCell.swift */; };
 		416BA27822D0B6EA008BC147 /* GroupDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416BA27722D0B6EA008BC147 /* GroupDescription.swift */; };
 		416BA27A22D0B937008BC147 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 416BA27922D0B937008BC147 /* Assets.xcassets */; };
 		41C3379A22DE02B1007A4FE3 /* AllGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C3379922DE02B1007A4FE3 /* AllGroupsViewController.swift */; };
+		B8024BC422EF44C2005FC86B /* SwipeFriendPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8024BC322EF44C2005FC86B /* SwipeFriendPhotoViewController.swift */; };
 		B816F8BE22C4CC0400713BAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B816F8BD22C4CC0400713BAC /* AppDelegate.swift */; };
 		B816F8C022C4CC0400713BAC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B816F8BF22C4CC0400713BAC /* LoginViewController.swift */; };
 		B816F8C822C4CC0600713BAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B816F8C622C4CC0600713BAC /* LaunchScreen.storyboard */; };
@@ -28,11 +29,12 @@
 /* Begin PBXFileReference section */
 		4130B26E22E2447300E3AF18 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		414BEA6922E093E6005E121D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = VKApp/Storyboard/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		414BEA6D22E09DFC005E121D /* AvatarImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarImageCell.swift; sourceTree = "<group>"; };
+		414BEA6D22E09DFC005E121D /* FriendPhotoImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendPhotoImageCell.swift; sourceTree = "<group>"; };
 		4150F50A22D0B039002F9881 /* GroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsCell.swift; sourceTree = "<group>"; };
 		416BA27722D0B6EA008BC147 /* GroupDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDescription.swift; sourceTree = "<group>"; };
 		416BA27922D0B937008BC147 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41C3379922DE02B1007A4FE3 /* AllGroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsViewController.swift; sourceTree = "<group>"; };
+		B8024BC322EF44C2005FC86B /* SwipeFriendPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeFriendPhotoViewController.swift; sourceTree = "<group>"; };
 		B816F8BA22C4CC0400713BAC /* VKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B816F8BD22C4CC0400713BAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B816F8BF22C4CC0400713BAC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				B8704C9B22D3B7380005B756 /* AllGroupsCell.swift */,
-				414BEA6D22E09DFC005E121D /* AvatarImageCell.swift */,
+				414BEA6D22E09DFC005E121D /* FriendPhotoImageCell.swift */,
 				4150F50A22D0B039002F9881 /* GroupsCell.swift */,
 				CEFD417822D0A4F10086FD9F /* FriendsCell.swift */,
 			);
@@ -124,6 +126,7 @@
 				B8704C9722D3AD5C0005B756 /* GroupsViewController.swift */,
 				4130B26E22E2447300E3AF18 /* FriendsViewController.swift */,
 				B816F8BF22C4CC0400713BAC /* LoginViewController.swift */,
+				B8024BC322EF44C2005FC86B /* SwipeFriendPhotoViewController.swift */,
 				B8E7879B22D342A500F564BE /* Model */,
 			);
 			path = Controllers;
@@ -206,7 +209,8 @@
 				41C3379A22DE02B1007A4FE3 /* AllGroupsViewController.swift in Sources */,
 				B8704C9822D3AD5C0005B756 /* GroupsViewController.swift in Sources */,
 				4130B26F22E2447300E3AF18 /* FriendsViewController.swift in Sources */,
-				414BEA6E22E09DFC005E121D /* AvatarImageCell.swift in Sources */,
+				414BEA6E22E09DFC005E121D /* FriendPhotoImageCell.swift in Sources */,
+				B8024BC422EF44C2005FC86B /* SwipeFriendPhotoViewController.swift in Sources */,
 				416BA27822D0B6EA008BC147 /* GroupDescription.swift in Sources */,
 				CEFD417C22D0A4F10086FD9F /* FriendPhotosViewController.swift in Sources */,
 				B816F8BE22C4CC0400713BAC /* AppDelegate.swift in Sources */,
@@ -289,7 +293,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -344,7 +348,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -358,16 +362,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G73T2GZKR7;
 				INFOPLIST_FILE = VKApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = EvanNgr.VKApp;
+				PRODUCT_BUNDLE_IDENTIFIER = EvanNgr.VKAppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -375,16 +383,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G73T2GZKR7;
 				INFOPLIST_FILE = VKApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = EvanNgr.VKApp;
+				PRODUCT_BUNDLE_IDENTIFIER = EvanNgr.VKAppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

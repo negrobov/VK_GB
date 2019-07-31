@@ -5,22 +5,15 @@ class GroupsViewController: UIViewController{
     @IBOutlet var tableView: UITableView!
     @IBOutlet var groupSearchBar: UISearchBar!
     
-    var searchedGroup: [String] = []
-    var searching = false
-    var currentGroups = [
-        Group(groupName: "New Balance",  groupAvatar: UIImage(named: "New Balance")),
-        Group(groupName: "MORGENSHTERN",  groupAvatar: nil),
-        Group(groupName: "GeekBrains",  groupAvatar: nil),
-        Group(groupName:  "Apple",  groupAvatar: nil),
-        Group(groupName: "Category B", groupAvatar: nil),
-        Group(groupName: "Being American", groupAvatar: nil),
-        Group(groupName:"Reddit",  groupAvatar: nil)
-    ]
+    lazy var searchedGroup = self.currentGroups
+   var currentGroups = Group.generateGroups()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.tableFooterView = UIView()
     }
     
-    //Adding group from AllGroupsViewController
     @IBAction func addGroup(segue: UIStoryboardSegue){
         guard let allGroupsVC = segue.source as? AllGroupsViewController,
             let indexPath = allGroupsVC.tableView.indexPathForSelectedRow
@@ -32,6 +25,7 @@ class GroupsViewController: UIViewController{
         }) else { return }
         
         currentGroups.append(newGroup)
+        filterGroups(with: groupSearchBar.text!)
         tableView.reloadData()
     }
 }
@@ -42,33 +36,41 @@ extension GroupsViewController: UITableViewDelegate {
 }
 extension GroupsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searching {
-            return  searchedGroup.count
-        } else {
-            return currentGroups.count
-        }
+        return searchedGroup.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsCell", for: indexPath) as? GroupsCell
             else { fatalError("GroupsCell can't be dequeued") }
-        cell.groupNameLabel?.text = currentGroups[indexPath.row].groupName
+        cell.groupNameLabel?.text = searchedGroup[indexPath.row].groupName
+        cell.groupAvatarImage?.image = searchedGroup[indexPath.row].groupAvatar
         
         return cell
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            currentGroups.remove(at: indexPath.row)
+            let currentGroupToDelete = searchedGroup[indexPath.row]
+            searchedGroup.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            currentGroups.removeAll() { group -> Bool in
+                group.groupName == currentGroupToDelete.groupName
+                
+            }
         }
     }
 }
-//Almost made search bar
 extension GroupsViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchedGroup =  currentGroups.map { $0.groupName }.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
         
-        searching = true
-        tableView.reloadData()
+        filterGroups(with: searchText)
     }
     
+    fileprivate func filterGroups(with text: String){
+        if text.isEmpty {
+            searchedGroup = currentGroups
+            tableView.reloadData()
+            return
+        }
+        searchedGroup = currentGroups.filter { $0.groupName.lowercased().contains(text.lowercased()) }
+        tableView.reloadData()
+    }
 }

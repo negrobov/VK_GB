@@ -10,13 +10,14 @@ class FriendsViewController: UITableViewController {
         super.viewDidLoad()
         
         (firstCharacters, sortedFriends) = sort(currentFriends)
+        tableView.tableFooterView = UIView()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        
         return firstCharacters.count
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         let character = firstCharacters[section]
         let friendsCount = sortedFriends[character]?.count
         
@@ -26,7 +27,6 @@ class FriendsViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell", for: indexPath) as? FriendsCell
             else { preconditionFailure("FriendsCell can't be dequeued") }
         
@@ -50,11 +50,11 @@ class FriendsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let character = firstCharacters[section]
+        
         return String(character)
     }
-    //Transfering random photos to FriendPhotosViewController
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "FriendPhotosSegue",
             let indexPath = tableView.indexPathForSelectedRow,
             let photoVC = segue.destination as? FriendPhotosViewController {

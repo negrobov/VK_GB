@@ -5,19 +5,23 @@ class LoginViewController: UIViewController {
     @IBOutlet var userTephoneNumber: UITextField!
     @IBOutlet var userPassword: UITextField!
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var loadingDotOne: UIImageView!
+    @IBOutlet var loadingDotTwo: UIImageView!
+    @IBOutlet var loadingDotThree: UIImageView!
+    @IBOutlet var userLoginButton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        scrollView.addGestureRecognizer(hideKeyboardGesture)
+        let hideLoginKeyboardGR = UITapGestureRecognizer(target: self, action: #selector(hideLoginKeyboard))
+        scrollView.addGestureRecognizer(hideLoginKeyboardGR)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.loginKeyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.loginKeyboardWasHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -29,32 +33,31 @@ class LoginViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
         NotificationCenter.default.removeObserver(self)
     }
     
-    //Login button press processing
-    @IBAction func userLoginButtonPressed(_ sender: Any) {
+    @IBAction func loadButton(_ sender: UIButton) {
+        loadingDotOneAnimation()
     }
     
-    @objc private func keyboardWasShown(notification: Notification) {
+    @objc private func loginKeyboardWasShown(notification: Notification) {
         let info = notification.userInfo as NSDictionary?
-        let kbSize = (info?.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
+        let loginKeyboardSize = (info?.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: loginKeyboardSize.height, right: 0)
         
         self.scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
-    
-    @objc func keyboardWasHidden(notification: Notification) {
+    @objc func loginKeyboardWasHidden(notification: Notification) {
         let contentInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
-    
-    @objc func hideKeyboard() {
+    @objc func hideLoginKeyboard() {
         self.scrollView.endEditing(true)
     }
-    //Reset password & telephone number
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LoginSegue"{
             userTephoneNumber.text = ""
@@ -62,13 +65,40 @@ class LoginViewController: UIViewController {
         }
     }
     
-    /* override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-     if identifier == "LoginSegue",
-     userTelephoneNumber.text == "89102536248",
-     userPassword.text == "123456"{
-     return true
-     }else{
-     return false
-     }
-     }*/
+    
+    func loadingDotOneAnimation(){
+        UIView.transition(with: loadingDotOne, duration: 0.5, options: [UIView.AnimationOptions.transitionCrossDissolve, ], animations: {
+            if self.loadingDotOne.image == UIImage(named: "Unfilled Dot 50"){
+                self.loadingDotOne.image = UIImage(named: "Filled Dot 50")
+            } else {
+                self.loadingDotOne.image = UIImage(named: "Unfilled Dot 50")
+            }
+        }, completion: { animateDot in
+            self.loadingDotTwoAnimation()
+        })
+    }
+    
+    func loadingDotTwoAnimation(){
+        UIView.transition(with: loadingDotTwo, duration: 0.5, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
+            if self.loadingDotTwo.image == UIImage(named: "Unfilled Dot 50"){
+                self.loadingDotTwo.image = UIImage(named: "Filled Dot 50")
+            } else {
+                self.loadingDotTwo.image = UIImage(named: "Unfilled Dot 50")
+            }
+        }, completion: { animateDot in
+            self.loadingDotThreeAnimation()
+        })
+    }
+    
+    func loadingDotThreeAnimation(){
+        UIView.transition(with: loadingDotThree, duration: 0.5, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
+            if self.loadingDotThree.image == UIImage(named: "Unfilled Dot 50"){
+                self.loadingDotThree.image = UIImage(named: "Filled Dot 50")
+            } else {
+                self.loadingDotThree.image = UIImage(named: "Unfilled Dot 50")
+            }
+        }, completion: { animateDot in
+            self.loadingDotOneAnimation()
+        })
+    }
 }
