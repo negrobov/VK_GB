@@ -8,7 +8,7 @@ class AllGroupsCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        allGroupsImage.layer.cornerRadius = (allGroupsImage.frame.size.width) / 2
+        allGroupsImage.layer.cornerRadius = allGroupsImage.frame.size.width / 2
         allGroupsImage.clipsToBounds = true
     }
 }

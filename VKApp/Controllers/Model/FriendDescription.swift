@@ -18,7 +18,6 @@ struct Friend {
         ]
     }
     
-    //Generating random photos
     static func generateFriendPhotos() ->[UIImage] {
         let images = [
             UIImage(named: "01")!,
@@ -33,10 +32,10 @@ struct Friend {
         ]
         
         let count = Int.random(in: 5...8)
-        var totalFriendImagesArr = [UIImage]()
+        var totalFriendPhotosArr = [UIImage]()
         for _ in 0...count {
-            totalFriendImagesArr.append(images.randomElement()!)
+            totalFriendPhotosArr.append(images.randomElement()!)
         }
-        return totalFriendImagesArr
+        return totalFriendPhotosArr
     }
 }

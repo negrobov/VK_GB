@@ -17,6 +17,7 @@ class FriendsViewController: UITableViewController {
         
         return firstCharacters.count
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let character = firstCharacters[section]
         let friendsCount = sortedFriends[character]?.count
@@ -42,6 +43,7 @@ class FriendsViewController: UITableViewController {
         if let currentFriends = sortedFriends[character] {
             cell.friendNameLabel.text = currentFriends[indexPath.row].friendName
             cell.friendAvatarImage.image = currentFriends[indexPath.row].friendAvatar
+            
             return cell
         }
         

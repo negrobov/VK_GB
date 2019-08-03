@@ -15,7 +15,6 @@ class FriendsCell: UITableViewCell {
         tapFriendAvatarImageGR.numberOfTapsRequired = 1
         tapFriendAvatarImageGR.numberOfTouchesRequired = 1
         friendAvatarImage?.addGestureRecognizer(tapFriendAvatarImageGR)
-        
     }
     
     @objc private func friendAvatarImageTapped() {
@@ -33,6 +32,3 @@ class FriendsCell: UITableViewCell {
         }, completion:  nil)
     }
 }
-
-// h
-

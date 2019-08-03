@@ -4,7 +4,6 @@ class FriendPhotoImageCell: UICollectionViewCell {
     
     @IBOutlet var friendPhotoImage: UIImageView!
     @IBOutlet var friendPhotoImageLike: UIImageView?
-    @IBOutlet var friendPhotoImageLikeView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

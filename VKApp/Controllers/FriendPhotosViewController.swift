@@ -6,17 +6,8 @@ class FriendPhotosViewController : UICollectionViewController {
     
     var photos = [UIImage]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
-        return 1
-    }
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    
+        
         return photos.count
     }
     
@@ -25,5 +16,12 @@ class FriendPhotosViewController : UICollectionViewController {
         cell.friendPhotoImage.image = photos[indexPath.item]
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SwipeFriendPhotos",
+            let destinationVC = segue.destination as? SwipeFriendPhotosViewController{
+            destinationVC.photos = self.photos
+        }
     }
 }

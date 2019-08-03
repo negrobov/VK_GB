@@ -10,6 +10,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var loadingDotThree: UIImageView!
     @IBOutlet var userLoginButton: UIButton?
     
+    let transitionManager = TransitionManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +37,7 @@ class LoginViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         NotificationCenter.default.removeObserver(self)
+        loadingDotOneAnimation()
     }
     
     @IBAction func loadButton(_ sender: UIButton) {
@@ -58,13 +61,12 @@ class LoginViewController: UIViewController {
         self.scrollView.endEditing(true)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LoginSegue"{
-            userTephoneNumber.text = ""
-            userPassword.text = ""
-        }
-    }
-    
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if segue.identifier == "LoginSegue"{
+    //            userTephoneNumber.text = ""
+    //            userPassword.text = ""
+    //        }
+    //    }
     
     func loadingDotOneAnimation(){
         UIView.transition(with: loadingDotOne, duration: 0.5, options: [UIView.AnimationOptions.transitionCrossDissolve, ], animations: {
@@ -77,7 +79,6 @@ class LoginViewController: UIViewController {
             self.loadingDotTwoAnimation()
         })
     }
-    
     func loadingDotTwoAnimation(){
         UIView.transition(with: loadingDotTwo, duration: 0.5, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
             if self.loadingDotTwo.image == UIImage(named: "Unfilled Dot 50"){
@@ -89,7 +90,6 @@ class LoginViewController: UIViewController {
             self.loadingDotThreeAnimation()
         })
     }
-    
     func loadingDotThreeAnimation(){
         UIView.transition(with: loadingDotThree, duration: 0.5, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
             if self.loadingDotThree.image == UIImage(named: "Unfilled Dot 50"){
@@ -100,5 +100,11 @@ class LoginViewController: UIViewController {
         }, completion: { animateDot in
             self.loadingDotOneAnimation()
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let toViewController = segue.destination as UIViewController
+        toViewController.transitioningDelegate = self.transitionManager
     }
 }

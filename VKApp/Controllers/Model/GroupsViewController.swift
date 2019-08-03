@@ -6,7 +6,7 @@ class GroupsViewController: UIViewController{
     @IBOutlet var groupSearchBar: UISearchBar!
     
     lazy var searchedGroup = self.currentGroups
-   var currentGroups = Group.generateGroups()
+    var currentGroups = Group.generateGroups()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +34,10 @@ extension GroupsViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
 extension GroupsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return searchedGroup.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,6 +60,7 @@ extension GroupsViewController: UITableViewDataSource {
         }
     }
 }
+
 extension GroupsViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -68,6 +71,7 @@ extension GroupsViewController: UISearchBarDelegate{
         if text.isEmpty {
             searchedGroup = currentGroups
             tableView.reloadData()
+            
             return
         }
         searchedGroup = currentGroups.filter { $0.groupName.lowercased().contains(text.lowercased()) }
